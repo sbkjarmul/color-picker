@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  overflow: hidden;
+  background-color: #3999b1;
+  color: white;
+}
+
+.main-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.main-container nav {
+  position: relative;
+  width: 100%;
+}
+
+.main-container nav .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2.5rem 10rem;
+  width: 100%;
+}
+
+.main-container nav .navbar .logo {
+  font-family: "Gochi Hand", cursive;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.main-container nav .navbar .lib-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-container nav .navbar .lib-box .lib-info {
+  color: white;
+  font-size: 0.75rem;
+}
+
+.main-container nav .navbar .lib-box .lib-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.main-container nav .navbar .lib-box .lib-btn .lib-btn__burger {
+  position: relative;
+  height: 100%;
+  width: 5px;
+  background: white;
+  border-radius: 3px;
+}
+
+.main-container nav .navbar .lib-box .lib-btn .lib-btn__burger:before, .main-container nav .navbar .lib-box .lib-btn .lib-btn__burger:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 5px;
+  background: white;
+  border-radius: 3px;
+}
+
+.main-container nav .navbar .lib-box .lib-btn .lib-btn__burger:before {
+  -webkit-transform: translateX(-8px);
+          transform: translateX(-8px);
+}
+
+.main-container nav .navbar .lib-box .lib-btn .lib-btn__burger:after {
+  -webkit-transform: translateX(12px) rotate(-20deg);
+          transform: translateX(12px) rotate(-20deg);
+}
+
+.main-container h1 {
+  font-weight: 300;
+  font-size: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.main-container .color-film {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: white;
+  padding: 0.5rem;
+  color: black;
+  margin-bottom: 2.5rem;
+}
+
+.main-container .color-film .color-square {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 14rem;
+  height: 14rem;
+  background: #3999b1;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.main-container .color-film .color-square:hover {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.main-container .color-film .color-square i.fa-eye-dropper {
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+.main-container .color-film .text-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.main-container .color-film .text-box .label {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.main-container .color-film .text-box .name {
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.main-container .add-btn {
+  padding: 1rem 2rem;
+  border: none;
+  background: #374f9f;
+  color: white;
+  border-radius: 30px;
+  margin-bottom: 5rem;
+  cursor: pointer;
+}
+
+.main-container .add-btn:hover {
+  background: #263464;
+}
+
+.main-container .add-btn:focus {
+  outline: none;
+}
+
+.library-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: all;
+  display: none;
+}
+
+.library-container .library {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100vh;
+  overflow: scroll;
+  background: white;
+}
+
+.library-container .library .close-library {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.library-container .library .close-library:focus {
+  outline: none;
+}
+
+.library-container .library .close-library i {
+  font-size: 1.5rem;
+}
+/*# sourceMappingURL=style.css.map */

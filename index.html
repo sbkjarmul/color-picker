@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Color Picker</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <nav>
+        <div class="navbar">
+          <div class="logo">
+            <span>sbkjarmul.</span>
+          </div>
+          <div class="lib-box">
+            <div class="lib-info">Library (<span>0</span>)</div>
+            <div class="lib-btn">
+              <div class="lib-btn__burger"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <h1>Color Picker</h1>
+      <div class="color-film">
+        <div class="color-square">
+          <i class="fas fa-eye-dropper"></i>
+        </div>
+        <div class="text-box">
+          <p class="label">Color</p>
+          <p class="name">#3999B1</p>
+        </div>
+      </div>
+      <button class="add-btn">Add to library</button>
+    </div>
+    <div class="library-container">
+      <div class="library">
+        <button class="close-library">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="adjust-container">
+      <div class="adjust-box">
+        <input type="range" min="1" max="360" name="hue" />
+        <input type="range" min="0" max="1" name="brightness" />
+        <input type="range" min="0" max="1" name="saturation" />
+        <div class="controls">
+          <div class="color-box"></div>
+          <div class="color-name">Hex <span></span></div>
+          <button class="close-adjust"></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
