@@ -1,3 +1,3 @@
 ## in progress
 
-![Work in Adobe XD](https://github.com/sbkjarmul/Beatmaker/blob/master/img/BeatmakerXD.png)
+![Work in Adobe XD](https://github.com/sbkjarmul/color-picker/blob/master/preview.png)
