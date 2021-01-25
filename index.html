@@ -52,15 +52,53 @@
       </div>
     </div>
     <div class="adjust-container">
-      <div class="adjust-box">
-        <input type="range" min="1" max="360" name="hue" />
-        <input type="range" min="0" max="1" name="brightness" />
-        <input type="range" min="0" max="1" name="saturation" />
+      <div class="adjust-panel">
+        <div class="slider-box">
+          <input
+            type="range"
+            min="1"
+            max="360"
+            step="1"
+            name="hue"
+            class="hue-input"
+          />
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step=".1"
+            name="brightness"
+            class="birght-input"
+          />
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step=".1"
+            name="saturation"
+            class="sat-input"
+          />
+        </div>
         <div class="controls">
           <div class="color-box"></div>
-          <div class="color-name">Hex <span></span></div>
-          <button class="close-adjust"></button>
+          <div class="color-name">Hex <span>#3999B1</span></div>
+          <button class="close-adjust">Close</button>
         </div>
+      </div>
+    </div>
+    <div class="copy-container">
+      <div class="copy-popup">
+        <h3>Copied to clipboard!</h3>
+      </div>
+    </div>
+    <div class="save-container">
+      <div class="save-popup">
+        <button class="close-save">
+          <i class="fas fa-times"></i>
+        </button>
+        <h3>Give a name to your color!</h3>
+        <input type="text" max-length="35" class="save-name" />
+        <button type="submit" class="submit-save">Save</button>
       </div>
     </div>
   </body>
