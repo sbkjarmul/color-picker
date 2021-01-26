@@ -164,8 +164,10 @@ body {
   height: 14rem;
   background: #3999b1;
   cursor: pointer;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 }
 
 .main-container .color-film .color-square:hover {
@@ -285,8 +287,12 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background: none;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  pointer-events: all;
 }
 
 .adjust-container .adjust-panel {
@@ -331,6 +337,7 @@ body {
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .adjust-container .adjust-panel .slider-box input[type="range"]::-webkit-slider-thumb {
