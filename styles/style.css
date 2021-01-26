@@ -210,6 +210,7 @@ body {
   text-transform: uppercase;
   font-weight: 300;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .main-container .add-btn {
@@ -231,14 +232,16 @@ body {
 }
 
 .library-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  pointer-events: all;
-  display: none;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .library-container .library {
@@ -249,6 +252,10 @@ body {
   height: 100vh;
   overflow: scroll;
   background: white;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .library-container .library .close-library {
@@ -270,13 +277,14 @@ body {
 }
 
 .adjust-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  pointer-events: all;
+  pointer-events: none;
+  opacity: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -287,12 +295,10 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background: none;
-  opacity: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  pointer-events: all;
 }
 
 .adjust-container .adjust-panel {
@@ -423,13 +429,14 @@ body {
 
 .copy-container,
 .save-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  pointer-events: all;
+  pointer-events: none;
+  opacity: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -439,14 +446,34 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .copy-container .copy-popup,
 .save-container .copy-popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: black;
   padding: 2rem;
   background: white;
   border-radius: 1rem;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: translateY(-2rem);
+          transform: translateY(-2rem);
+}
+
+.copy-container .copy-popup h4,
+.save-container .copy-popup h4 {
+  font-size: 2rem;
 }
 
 .copy-container .save-popup,
@@ -528,8 +555,29 @@ body {
   outline: none;
 }
 
-.save-container,
-.copy-container {
-  display: none;
+.copy-container.active,
+.save-container.active,
+.adjust-container.active,
+.library-container.active {
+  opacity: 1;
+  pointer-events: all;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.copy-container.active .copy-popup.active,
+.save-container.active .copy-popup.active,
+.adjust-container.active .copy-popup.active,
+.library-container.active .copy-popup.active {
+  -webkit-transform: translateY(0rem);
+          transform: translateY(0rem);
+}
+
+.copy-container.active .library.active,
+.save-container.active .library.active,
+.adjust-container.active .library.active,
+.library-container.active .library.active {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
 }
 /*# sourceMappingURL=style.css.map */

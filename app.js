@@ -2,6 +2,13 @@ const colorSquare = document.querySelector(".color-square");
 const colorBg = document.querySelector("body");
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHex = document.querySelector(".name");
+const popup = document.querySelector(".copy-container");
+const adjust = document.querySelector(".adjust-container");
+const closeAdjust = document.querySelector(".close-adjust");
+const libraryBtn = document.querySelector(".lib-btn");
+const library = document.querySelector(".library-container");
+const closeLibraryBtn = document.querySelector(".close-library");
+
 let initialColor;
 
 //Event Listeners
@@ -11,6 +18,32 @@ sliders.forEach((slider) => {
 
 sliders.forEach((slider) => {
   slider.addEventListener("change", updateTextUI);
+});
+
+currentHex.addEventListener("click", copyToClipboard);
+popup.addEventListener("transitionend", () => {
+  const popupBox = popup.children[0];
+  popup.classList.remove("active");
+  popupBox.classList.remove("active");
+});
+
+colorSquare.addEventListener("click", showAdjustments);
+
+closeAdjust.addEventListener("click", () => {
+  const adjustBox = adjust.children[0];
+  adjust.classList.remove("active");
+  adjustBox.classList.remove("active");
+});
+
+libraryBtn.addEventListener("click", () => {
+  const libraryBox = library.children[0];
+  library.classList.add("active");
+  libraryBox.classList.add("active");
+});
+
+closeLibraryBtn.addEventListener("click", () => {
+  library.classList.remove("active");
+  libraryBox.classList.remove("active");
 });
 
 //Functions
@@ -128,5 +161,26 @@ function resetInputs() {
     }
   });
 }
+
+function copyToClipboard() {
+  const el = document.createElement("textarea");
+  el.value = currentHex.innerText;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+  //Popup animation
+  const popupBox = popup.children[0];
+  popupBox.classList.add("active");
+  popup.classList.add("active");
+}
+
+function showAdjustments() {
+  adjustBox = adjust.children[0];
+  adjust.classList.add("active");
+  adjustBox.classList.add("active");
+}
+
+function openLibrary() {}
 
 randomColor();
