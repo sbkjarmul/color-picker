@@ -89,7 +89,6 @@ body {
             width: 5px;
             background: white;
             border-radius: 3px;
-
             &:before,
             &:after {
               content: "";
@@ -203,7 +202,12 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  display: none;
+  background: none;
+  opacity: 0;
+  pointer-events: none;
+  //   transform: translateY(0px);
+  //   transition: all 0.5s ease;
+  //    pointer-events: all;
   .adjust-panel {
     position: relative;
     width: 27.5rem;
