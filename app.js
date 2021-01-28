@@ -171,7 +171,6 @@ function updateTextUI() {
 
 function resetInputs() {
   const sliders = document.querySelectorAll(".slider-box input");
-  console.log(initialColor);
   sliders.forEach((slider) => {
     if (slider.name === "hue") {
       const hueValue = chroma(initialColor).hsl()[0];
@@ -223,6 +222,11 @@ function saveColor() {
   }
   const colorObj = { name, color, nr: colorNr };
   savedColors.push(colorObj);
+  const libraryInfo = document.querySelector(".lib-info span");
+  let libCountText = libraryInfo.innerText;
+  let libCountInt = parseInt(libCountText, 10);
+  libCountInt = libCountInt + savedColors.length;
+  libraryInfo.innerText = libCountInt;
   //Save to local storage
   saveToLocal(colorObj);
   saveInput.value = "";
