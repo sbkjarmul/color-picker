@@ -228,6 +228,7 @@ function saveColor() {
   let libCountInt = parseInt(libCountText, 10);
   libCountInt = libCountInt + savedColors.length;
   libraryInfo.innerText = libCountInt;
+  console.log(`Library size: ${libCountInt}`);
   //Save to local storage
   saveToLocal(colorObj);
   saveInput.value = "";
