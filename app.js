@@ -8,8 +8,15 @@ const closeAdjust = document.querySelector(".close-adjust");
 const libraryBtn = document.querySelector(".lib-btn");
 const library = document.querySelector(".library-container");
 const closeLibraryBtn = document.querySelector(".close-library");
+const generateBtn = document.querySelector(".generate");
+const addBtn = document.querySelector(".add-btn");
+const saveBox = document.querySelector(".save-popup");
+const saveClose = saveBox.children[0];
+const saveBtn = document.querySelector(".submit-save");
+const saveInput = document.querySelector(".save-name");
 
 let initialColor;
+let savedColors = [];
 
 //Event Listeners
 sliders.forEach((slider) => {
@@ -41,10 +48,23 @@ libraryBtn.addEventListener("click", () => {
   libraryBox.classList.add("active");
 });
 
-closeLibraryBtn.addEventListener("click", () => {
-  library.classList.remove("active");
-  libraryBox.classList.remove("active");
+closeLibraryBtn.addEventListener("click", closeLibrary);
+
+generateBtn.addEventListener("click", randomColor);
+
+addBtn.addEventListener("click", () => {
+  const save = saveBox.parentElement;
+  save.classList.add("active");
+  saveBox.classList.add("active");
 });
+
+saveClose.addEventListener("click", () => {
+  save = saveBox.parentElement;
+  save.classList.remove("active");
+  saveBox.classList.remove("active");
+});
+
+saveBtn.addEventListener("click", saveColor);
 
 //Functions
 
@@ -61,6 +81,7 @@ function randomColor() {
   const dropperIco = colorSquare.children[0];
   const colorBox = document.querySelector(".color-box");
   const colorName = document.querySelector(".color-name span");
+  const libraryBox = library.children[0];
 
   initialColor = chroma(randomColor).hex();
   //Add the color to the bg
@@ -69,6 +90,8 @@ function randomColor() {
   colorSquare.style.backgroundColor = randomColor;
   colorName.innerText = randomColor;
   colorBox.style.backgroundColor = randomColor;
+  libraryBox.style.backgroundColor = chroma(randomColor).darken(2.5);
+
   //Check text contrast
   checkTextContrast(randomColor, dropperIco);
   //Initial Colorize Sliders
@@ -130,8 +153,10 @@ function hslControls(e) {
   colorBg.style.backgroundColor = color;
   colorSquare.style.backgroundColor = color;
   colorBox.style.backgroundColor = color;
+  libraryBox.style.backgroundColor = chroma(color).darken(2.5);
 
   //Colorize Inputs
+
   colorizeSliders(color, hue, brightness, saturation);
 }
 
@@ -146,6 +171,7 @@ function updateTextUI() {
 
 function resetInputs() {
   const sliders = document.querySelectorAll(".slider-box input");
+  console.log(initialColor);
   sliders.forEach((slider) => {
     if (slider.name === "hue") {
       const hueValue = chroma(initialColor).hsl()[0];
@@ -181,6 +207,138 @@ function showAdjustments() {
   adjustBox.classList.add("active");
 }
 
-function openLibrary() {}
+function saveColor() {
+  const save = saveBox.parentElement;
+  save.classList.remove("active");
+  saveBox.classList.remove("active");
+  const name = saveInput.value;
+  const color = currentHex.innerText;
+  //Generate Object
+  let colorNr;
+  const colorObjects = JSON.parse(localStorage.getItem("colors"));
+  if (colorObjects) {
+    colorNr = colorObjects.length;
+  } else {
+    colorNr = savedColors.length;
+  }
+  const colorObj = { name, color, nr: colorNr };
+  savedColors.push(colorObj);
+  //Save to local storage
+  saveToLocal(colorObj);
+  saveInput.value = "";
+  //Generate colors for library
+  const customColor = document.createElement("div");
+  customColor.classList.add("custom-color");
+  const title = document.createElement("h4");
+  title.innerText = colorObj.name;
+  const smallFilm = document.createElement("div");
+  smallFilm.classList.add("small-film");
+  const smallSquare = document.createElement("div");
+  smallSquare.classList.add("small-square");
+  smallSquare.style.backgroundColor = colorObj.color;
+  smallFilm.classList.add(colorObj.nr);
 
+  //Attach event to the btn
+  smallFilm.addEventListener("click", (e) => {
+    closeLibrary();
+    const colorIndex = e.target.classList[1];
+    const colorBox = document.querySelector(".color-box");
+    const colorName = document.querySelector(".color-name span");
+    const dropperIco = colorSquare.children[0];
+    initialColor = "";
+    initialColor = savedColors[colorIndex].color;
+    colorBg.style.backgroundColor = initialColor;
+    colorSquare.style.backgroundColor = initialColor;
+    colorBox.style.backgroundColor = initialColor;
+    colorName.innerText = initialColor;
+    currentHex.innerText = initialColor;
+    libraryBox.style.backgroundColor = chroma(initialColor).darken(2.5);
+    checkTextContrast(initialColor, dropperIco);
+    resetInputs();
+  });
+
+  //Apend to library
+  const libraryBox = library.children[0];
+  customColor.appendChild(smallFilm);
+  smallFilm.appendChild(smallSquare);
+  smallFilm.appendChild(title);
+  libraryBox.appendChild(customColor);
+}
+
+function saveToLocal(colorObj) {
+  let localColors;
+  if (localStorage.getItem("colors") === null) {
+    localColors = [];
+  } else {
+    localColors = JSON.parse(localStorage.getItem("colors"));
+  }
+  localColors.push(colorObj);
+  localStorage.setItem("colors", JSON.stringify(localColors));
+}
+
+function getLocal() {
+  let localColors;
+  if (localStorage.getItem("colors") === null) {
+    localColors = [];
+  } else {
+    const colorObjects = JSON.parse(localStorage.getItem("colors"));
+    savedPalettes = [...colorObjects];
+    const libraryInfo = document.querySelector(".lib-info span");
+    libraryInfo.innerText = colorObjects.length;
+
+    colorObjects.forEach((colorObj) => {
+      const customColor = document.createElement("div");
+      customColor.classList.add("custom-color");
+      const title = document.createElement("h4");
+      title.innerText = colorObj.name;
+      const smallFilm = document.createElement("div");
+      smallFilm.classList.add("small-film");
+      const smallSquare = document.createElement("div");
+      smallSquare.classList.add("small-square");
+      smallSquare.style.backgroundColor = colorObj.color;
+      smallFilm.classList.add(colorObj.nr);
+
+      //Attach event to the btn
+      smallFilm.addEventListener("click", (e) => {
+        closeLibrary();
+        const colorIndex = e.target.classList[1];
+        const colorBox = document.querySelector(".color-box");
+        const colorName = document.querySelector(".color-name span");
+        const dropperIco = colorSquare.children[0];
+        initialColor = "";
+        initialColor = colorObjects[colorIndex].color;
+        colorBg.style.backgroundColor = initialColor;
+        colorSquare.style.backgroundColor = initialColor;
+        colorBox.style.backgroundColor = initialColor;
+        colorName.innerText = initialColor;
+        currentHex.innerText = initialColor;
+        libraryBox.style.backgroundColor = chroma(initialColor).darken(2.5);
+        checkTextContrast(initialColor, dropperIco);
+        updateTextUI();
+        resetInputs();
+        let sliders = document.querySelectorAll('input[type="range"]');
+        const color = chroma(initialColor);
+        const hue = sliders[0];
+        const brightness = sliders[1];
+        const saturation = sliders[2];
+        colorizeSliders(color, hue, brightness, saturation);
+      });
+
+      //Apend to library
+      const libraryBox = library.children[0];
+      customColor.appendChild(smallFilm);
+      smallFilm.appendChild(smallSquare);
+      smallFilm.appendChild(title);
+      libraryBox.appendChild(customColor);
+    });
+  }
+}
+
+function closeLibrary() {
+  const libraryBox = library.children[0];
+  library.classList.remove("active");
+  libraryBox.classList.remove("active");
+}
+
+getLocal();
 randomColor();
