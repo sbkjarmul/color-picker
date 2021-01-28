@@ -213,9 +213,10 @@ function saveColor() {
   saveBox.classList.remove("active");
   const name = saveInput.value;
   const color = currentHex.innerText;
+  let libCountInt = 0;
   //Generate Object
   let colorNr;
-  const colorObjects = JSON.parse(localStorage.getItem("colors"));
+  const colorObjects = JSON.parse(sessionStorage.getItem("colors"));
   if (colorObjects) {
     colorNr = colorObjects.length;
   } else {
@@ -225,10 +226,10 @@ function saveColor() {
   savedColors.push(colorObj);
   const libraryInfo = document.querySelector(".lib-info span");
   let libCountText = libraryInfo.innerText;
-  let libCountInt = parseInt(libCountText, 10);
-  libCountInt = libCountInt + savedColors.length;
+  libCountInt = parseInt(libCountText, 10);
+  libCountInt = libCountInt + 1;
   libraryInfo.innerText = libCountInt;
-  console.log(`Library size: ${libCountInt}`);
+
   //Save to local storage
   saveToLocal(colorObj);
   saveInput.value = "";
@@ -274,21 +275,21 @@ function saveColor() {
 
 function saveToLocal(colorObj) {
   let localColors;
-  if (localStorage.getItem("colors") === null) {
+  if (sessionStorage.getItem("colors") === null) {
     localColors = [];
   } else {
-    localColors = JSON.parse(localStorage.getItem("colors"));
+    localColors = JSON.parse(sessionStorage.getItem("colors"));
   }
   localColors.push(colorObj);
-  localStorage.setItem("colors", JSON.stringify(localColors));
+  sessionStorage.setItem("colors", JSON.stringify(localColors));
 }
 
 function getLocal() {
   let localColors;
-  if (localStorage.getItem("colors") === null) {
+  if (sessionStorage.getItem("colors") === null) {
     localColors = [];
   } else {
-    const colorObjects = JSON.parse(localStorage.getItem("colors"));
+    const colorObjects = JSON.parse(sessionStorage.getItem("colors"));
     savedPalettes = [...colorObjects];
     const libraryInfo = document.querySelector(".lib-info span");
     libraryInfo.innerText = colorObjects.length;
