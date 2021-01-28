@@ -144,6 +144,7 @@ function hslControls(e) {
   const bgColor = initialColor;
   const colorBox = document.querySelector(".color-box");
   const colorName = document.querySelector(".color-name span");
+  const libraryBox = library.children[0];
 
   let color = chroma(bgColor)
     .set("hsl.s", saturation.value)
@@ -249,6 +250,7 @@ function saveColor() {
     const colorBox = document.querySelector(".color-box");
     const colorName = document.querySelector(".color-name span");
     const dropperIco = colorSquare.children[0];
+    const libraryBox = library.children[0];
     initialColor = "";
     initialColor = savedColors[colorIndex].color;
     colorBg.style.backgroundColor = initialColor;
